@@ -1,7 +1,7 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
 import bodyParser from 'body-parser';
-import db from './db.js';
+//import db from './db.js';
 
 const app = express();
 
@@ -21,15 +21,9 @@ const PORT = process.env.PORT || 3000;
 
 
 
-
-
-
-
-
-
-
-
-
+app.get('/', (req, res)=>{
+    res.render('index')
+})
 
 
 

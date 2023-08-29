@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+}
+
+body,html{
+    width: 100%;
+    font-family: Arial, sans-serif;
+    
+
+}
+
+.container{
+    width:auto;
+    background-color:rgb(from color r g b);
+    color: greenyellow;
+}
+
+h1{
+    text-align: center;
+    padding: 20px;
+    color:green;
+}
