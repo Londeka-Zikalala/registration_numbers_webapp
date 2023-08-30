@@ -5,14 +5,18 @@
 body,html{
     width: 100%;
     font-family: Arial, sans-serif;
-    
+    padding:1%;
+    margin: 1%;
 
 }
 
 .container{
-    width:auto;
+    width:90%;
+    height: 90vh;
     background-color:rgb(from color r g b);
     color: greenyellow;
+    background-color: aliceblue;
+    margin-inline:5%; 
 }
 
 h1{
@@ -20,3 +24,75 @@ h1{
     padding: 20px;
     color:green;
 }
+
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid orangered;
+    border-radius: 4px;
+}
+.reg_label{
+    margin-left: 15%;
+}
+button {
+    padding: 5px 10px;
+    background-color:beige;
+    color:navy;
+    border-radius: 4px;
+    margin-inline: 50%;
+    margin-top: 5%;
+    margin-bottom: 0%;
+    padding:1%;
+}
+
+ul {
+    list-style: none;
+    padding: 10px;
+    background-color: blanchedalmond;
+    border: 1px solid  black;
+    border-radius: 2px;
+    width: 25%;
+    margin-inline: 40%;
+    
+}
+
+li {
+    padding: 5px;
+    border-bottom: 1px solid black;
+    border-radius: 2px;
+    width: 60%;
+    margin-inline: 20%;
+}
+
+
+/********media queries*******/
+
+/* Small screens */
+@media only screen and (max-width: 34em) {
+    body{
+        align-items: center;
+    }
+    .container {
+      width: 85%;
+      height: 50vh;
+      
+    }
+  
+    
+  }
+  
+  /* Medium screens */
+  @media only screen and (min-width: 35em) {
+    .container{
+      max-width: 80%;
+    
+    }
+  
+  }
+  
+  /* Large screens */
+  @media only screen and (min-width: 55em) {
+    .container{
+      max-width: 85%;
+     
+    }
+  }

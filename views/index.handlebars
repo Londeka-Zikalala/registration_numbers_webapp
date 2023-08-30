@@ -2,26 +2,46 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>greetings-page</title>
-  <link rel="stylesheet" href="../style.css">
+    <meta charset="utf-8">
+    <title>greetings-page</title>
+    <link rel="stylesheet" href="../style.css">
 
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>Registration Numbers</h1>
         </div>
         <div class="registrations">
-        <label for="registration">Enter Registration Number:</label>
-        <input type="text" id="registration" name="reg_number">
-        <button type="submit">Add</button>
+            <form action="/reg_number" method="POST">
+                <label for="registration" class="reg_label">Enter Registration Number:</label>
+                <input type="text" id="registration" name="reg_number">
+                <label for="townSelect">Choose a town:</label>
+                <select id="towns" placeholder="Select a town">
+                    <option value="1" name="town">Johannesburg</option>
+                    <option value="2" name="town">CapeTown</option>
+                    <option value="3" name="town">Mbombela</option>
+                </select>
+            </form>
         </div>
-        <div class="reg_list">
-            <ul id="registrationList">
-                
-            </ul>
+
+        <div>
+            <form action="/reg_number" method="GET">
+                <button class="addButton" type="submit">Add</button>
+
+                <div class="reg_list">
+                     <ul id="registrationList">
+             {{#each getRegistrations}}
+            <li>{{this.reg_number}}</li>
+            {{/each}}
+                         </ul>
+                </div>
+            </form>
+
         </div>
+
     </div>
 </body>
+
 </html>
