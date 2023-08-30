@@ -31,7 +31,7 @@ input[type="text"] {
     border-radius: 4px;
 }
 .reg_label{
-    margin-left: 15%;
+    margin-left: 35%;
 }
 button {
     padding: 5px 10px;
@@ -47,13 +47,21 @@ button {
 ul {
     list-style: none;
     padding: 10px;
-    background-color: blanchedalmond;
     border: 1px solid  black;
     border-radius: 2px;
     width: 25%;
     margin-inline: 40%;
     
 }
+.towns {
+    display: inline-flex;
+    font-weight: 900;
+    color: cadetblue;
+    width: 60%;
+    margin-inline:35%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+  }
 
 li {
     padding: 5px;

@@ -27,15 +27,13 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 3000;
 
 
-
-app.get('/', (req, res)=>{
-    res.render('index')
-})
-
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
 app.post('/reg_number', async (req, res) => {
-    const regNumber = req.body.reg_number;
-    const townId = parseInt(req.body.town); 
+    const regNumber = req.body.regNumber;
+    const townId = req.body.chooseTown;
 
     if (!regNumber || isNaN(townId)) {
         res.status(400).send('Bad Request');
@@ -46,18 +44,13 @@ app.post('/reg_number', async (req, res) => {
         // Call the registration service to add the registration
         await regRoute.addReg({ regNumber, townId });
 
-        // Redirect to the registration list
-        res.render, ('index', {
-            regNumber, townId
-        });
-
+        // Redirect to the registration list after adding
+        res.redirect('/reg_number');
     } catch (error) {
         // Handle errors
         console.error('Error adding registration', error);
         res.status(500).send('Internal Server Error');
     }
-
-    
 });
 
 app.get('/reg_number', async (req, res) => {
@@ -66,18 +59,14 @@ app.get('/reg_number', async (req, res) => {
         res.render('index', {
             getRegistrations
         });
-        console.log(getRegistrations)
+        console.log(getRegistrations);
     } catch (error) {
         // Handle errors
         console.error('Error fetching registrations', error);
         res.status(500).send('Internal Server Error');
     }
-  
 });
-
-
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`)
+    console.log(`Server started on port ${PORT}`);
 });
-

@@ -16,26 +16,32 @@
         <div class="registrations">
             <form action="/reg_number" method="POST">
                 <label for="registration" class="reg_label">Enter Registration Number:</label>
-                <input type="text" id="registration" name="reg_number">
-                <label for="townSelect">Choose a town:</label>
-                <select id="towns" placeholder="Select a town">
-                    <option value="1" name="town">Johannesburg</option>
-                    <option value="2" name="town">CapeTown</option>
-                    <option value="3" name="town">Mbombela</option>
-                </select>
-            </form>
-        </div>
+                <input type="text" id="registration" name="regNumber" value="{{regNumber}}">
+                 <div class="towns">
+        <label class="Johannesburg">
+          <input type="radio" name="chooseTown" class="chooseTownRadio" value="1">
+          <span class="label-body">Johannesburg</span>
+        </label>
+        <label class="English">
+          <input type="radio" name="chooseTown" class="chooseTownRadio" value="2">
+          <span class="label-body">Mbombela</span>
+        </label>
+        <label class="Sotho">
+          <input type="radio" name="chooseTown" class="chooseTownRadio" value="3">
+          <span class="label-body">CapeTown</span>
+        </label>
+      </div>
 
         <div>
             <form action="/reg_number" method="GET">
                 <button class="addButton" type="submit">Add</button>
 
                 <div class="reg_list">
-                     <ul id="registrationList">
-             {{#each getRegistrations}}
-            <li>{{this.reg_number}}</li>
-            {{/each}}
-                         </ul>
+                  <ul id="registrationList">
+        {{#each getRegistrations}}
+        <li>{{this.reg_number}}</li>
+        {{/each}}
+    </ul>
                 </div>
             </form>
 
