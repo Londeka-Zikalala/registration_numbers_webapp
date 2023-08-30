@@ -1,6 +1,7 @@
 import assert from 'assert';
-import db from '../db.js';
 import regService from '../service/reg_number_service.js'
+import db from '../db.js'
+
 
 describe('The regService tests', function(){
     let registrationService = regService(db)
@@ -13,6 +14,8 @@ describe('The regService tests', function(){
             console.log(err);
             throw err;
         }
+        after(function () {
+            db.$pool.end;})
 
         it('should add a new registration',async function(){
             var reg ={
@@ -28,6 +31,5 @@ describe('The regService tests', function(){
         })
     });
 
-    after(function () {
-        db.$pool.end;})
+   
 })
