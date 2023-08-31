@@ -3,7 +3,7 @@ function regService(db){
    async function addReg(registration, townName){
     
     await db.none("INSERT INTO registrations.towns (town_name) VALUES ($1)", townName);
-    const town = await db.one('SELECT id FROM registrations.towns WHERE town_name = $1',[townName]);
+    const town = await db.any('SELECT id FROM registrations.towns WHERE town_name = $1',[townName]);
     let townId = town.id;
     let regNumber = registration;
     await db.none('INSERT INTO registrations.reg_numbers (reg_number, town_id) VALUES ($1, $2)', [regNumber, townId]);
