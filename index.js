@@ -42,7 +42,7 @@ app.post('/reg_number', async (req, res) => {
 
     try {
         // Call the registration service to add the registration
-        await regRoute.addReg({ regNumber, townId });
+        await regRoute.addReg(regNumber, townId);
 
         // Redirect to the registration list after adding
         res.redirect('/reg_number');

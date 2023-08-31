@@ -13,16 +13,17 @@ body,html{
 .container{
     width:90%;
     height: 90vh;
-    background-color:rgb(from color r g b);
-    color: greenyellow;
-    background-color: aliceblue;
+    background-color:beige;
+    color: cadetblue;
     margin-inline:5%; 
+    border: 2px solid beige;
+    border-radius: 10px;
 }
 
 h1{
     text-align: center;
     padding: 20px;
-    color:green;
+    color:navy;
 }
 
 input[type="text"] {
@@ -31,7 +32,7 @@ input[type="text"] {
     border-radius: 4px;
 }
 .reg_label{
-    margin-left: 35%;
+    margin-left: 25%;
 }
 button {
     padding: 5px 10px;
@@ -47,7 +48,7 @@ button {
 ul {
     list-style: none;
     padding: 10px;
-    border: 1px solid  black;
+    border: 1px  black;
     border-radius: 2px;
     width: 25%;
     margin-inline: 40%;
@@ -58,17 +59,26 @@ ul {
     font-weight: 900;
     color: cadetblue;
     width: 60%;
-    margin-inline:35%;
+    margin-inline:25%;
     margin-bottom: 5%;
     margin-top: 5%;
   }
 
 li {
     padding: 5px;
-    border-bottom: 1px solid black;
-    border-radius: 2px;
+    border: 1px solid black;
+    border-radius: 4px;
     width: 60%;
     margin-inline: 20%;
+    margin-top: 1px;
+}
+.registrations{
+  border: 2px solid navajowhite;
+  width: 70%;
+  margin-inline: 15%;
+  border-radius: 6px;
+  background-color: antiquewhite;
+  padding: 1%;
 }
 
 
