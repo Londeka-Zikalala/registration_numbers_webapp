@@ -18,10 +18,8 @@ describe('The regService tests', function(){
         
         it('should add a new registration',async function(){
             const regNumber = 'CY 623 428';
-            const townName = 'Johannesburg';
 
-            await db.none("INSERT INTO registrations.towns (town_name) VALUES ($1)", townName);
-            await registrationService.addReg(regNumber, townName);
+            await registrationService.addReg(regNumber);
            var getRegistration = await registrationService.getReg()
 
            assert.equal(getRegistration.length, 1)

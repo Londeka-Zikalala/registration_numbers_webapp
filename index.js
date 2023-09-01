@@ -33,23 +33,22 @@ app.get('/', (req, res) => {
 
 app.post('/reg_number', async (req, res) => {
     const regNumber = req.body.regNumber;
-    const townId = req.body.chooseTown;
 
-    if (!regNumber || isNaN(townId)) {
-        res.status(400).send('Bad Request');
+    if (!regNumber) {
+        res.status(400).send('Invalid input');
         return;
     }
 
     try {
         // Call the registration service to add the registration
-        await regRoute.addReg(regNumber, townId);
+        await regRoute.addReg(regNumber);
 
         // Redirect to the registration list after adding
         res.redirect('/reg_number');
     } catch (error) {
         // Handle errors
         console.error('Error adding registration', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Error adding registration');
     }
 });
 
@@ -63,7 +62,7 @@ app.get('/reg_number', async (req, res) => {
     } catch (error) {
         // Handle errors
         console.error('Error fetching registrations', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Error fetching registrations');
     }
 });
 

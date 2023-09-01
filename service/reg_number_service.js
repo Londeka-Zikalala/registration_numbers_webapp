@@ -1,12 +1,15 @@
 function regService(db){
+
     //Add a registration number
-   async function addReg(registration, townName){
+   async function addReg(registration){
     
-    await db.none("INSERT INTO registrations.towns (town_name) VALUES ($1)", townName);
-    const town = await db.any('SELECT id FROM registrations.towns WHERE town_name = $1',[townName]);
-    let townId = town.id;
-    let regNumber = registration;
-    await db.none('INSERT INTO registrations.reg_numbers (reg_number, town_id) VALUES ($1, $2)', [regNumber, townId]);
+        const RegExp = /^([A-Z]{2}\s?\d{3}-\d{3})$|^([A-Z]{2}\s?\d{4})$|^([A-Z]{2}\s?\d{7})$|^([A-Z]{2}\s?\d{3}\s\d{3})$|^([A-Z]{2}\s?\d{3})$/i;
+        
+    if(registration.length <= 10 && RegExp.test(registration)){
+        let regNumber = registration;
+        await db.none('INSERT INTO registrations.reg_numbers (reg_number) VALUES ($1)', [regNumber]);
+      
+    }
    };
 
    // get all the registrations
