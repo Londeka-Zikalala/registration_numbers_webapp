@@ -95,15 +95,28 @@ li {
 @media only screen and (max-width: 34em) {
   
     .container {
-      max-width: 70%;
+      max-width: 100%;
+      margin-inline:2.5%;
       height: auto;
     }
 
   .registrations{
-    width: 100%;
-   
+    max-width: 100%;
   }
-    
+  .reg_label{
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+    margin-inline: 0%;
+} 
+input[type="text"] {
+  padding: 5px;
+  border: 1px solid #FFEEF4;
+  border-radius: 4px;
+  margin-inline:10%;
+  
+}
     
   }
   
