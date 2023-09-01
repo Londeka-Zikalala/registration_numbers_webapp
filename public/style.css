@@ -11,33 +11,37 @@ body,html{
 }
 
 .container{
-    width:90%;
-    height: 90vh;
-    background-color:beige;
-    color: cadetblue;
+    width:100%;
+    height: auto;
+    background-color:#E4E4D0;
+    color: #FFEEF4;
     margin-inline:5%; 
-    border: 2px solid beige;
+    margin-block: 5%;
+    border: 2px solid #E4E4D0;
     border-radius: 10px;
 }
 
 h1{
     text-align: center;
     padding: 20px;
-    color:navy;
+    color:#94A684;
+    font-weight: 900;
 }
 
 input[type="text"] {
     padding: 5px;
-    border: 1px solid orangered;
+    border: 1px solid #FFEEF4;
     border-radius: 4px;
+    
 }
 .reg_label{
-    margin-left: 25%;
+    margin-left:15%;
+    font-weight: 800;
 }
 button {
     padding: 5px 10px;
-    background-color:beige;
-    color:navy;
+    background-color:#FFEEF4;
+    color:#94A684;
     border-radius: 4px;
     margin-inline: 50%;
     margin-top: 5%;
@@ -57,7 +61,7 @@ ul {
 .towns {
     display: inline-flex;
     font-weight: 900;
-    color: cadetblue;
+    color: #94A684;
     width: 60%;
     margin-inline:25%;
     margin-bottom: 5%;
@@ -67,17 +71,20 @@ ul {
 li {
     padding: 5px;
     border: 1px solid black;
+    background-color: #94A684;
     border-radius: 4px;
     width: 60%;
     margin-inline: 20%;
     margin-top: 1px;
+    font-weight: 600;
 }
 .registrations{
-  border: 2px solid navajowhite;
+  border: 2px solid #AEC3AE;
   width: 70%;
   margin-inline: 15%;
+  margin-block: 5%;
   border-radius: 6px;
-  background-color: antiquewhite;
+  background-color: #AEC3AE;
   padding: 1%;
 }
 
@@ -86,15 +93,17 @@ li {
 
 /* Small screens */
 @media only screen and (max-width: 34em) {
-    body{
-        align-items: center;
-    }
-    .container {
-      width: 85%;
-      height: 50vh;
-      
-    }
   
+    .container {
+      max-width: 70%;
+      height: auto;
+    }
+
+  .registrations{
+    width: 100%;
+   
+  }
+    
     
   }
   
@@ -104,6 +113,7 @@ li {
       max-width: 80%;
     
     }
+
   
   }
   
