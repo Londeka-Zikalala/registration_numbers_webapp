@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 
 app.post('/reg_number', async (req, res) => {
     const regNumber = req.body.regNumber;
+        
 
     if (!regNumber) {
         res.status(400).send('Invalid input');
@@ -42,7 +43,7 @@ app.post('/reg_number', async (req, res) => {
     try {
         // Call the registration service to add the registration
         await regRoute.addReg(regNumber);
-
+        
         // Redirect to the registration list after adding
         res.redirect('/reg_number');
     } catch (error) {
@@ -58,6 +59,7 @@ app.get('/reg_number', async (req, res) => {
         res.render('index', {
             getRegistrations
         });
+        
         console.log(getRegistrations);
     } catch (error) {
         // Handle errors
@@ -65,6 +67,23 @@ app.get('/reg_number', async (req, res) => {
         res.status(500).send('Error fetching registrations');
     }
 });
+
+app.get('/reg_by_town', async (req,res)=>{
+try{
+    const townName = req.body.chooseTown;
+   
+    const registrations = await regRoute.getRegByTown(townName)
+    console.log(townName)
+    res.render('index',{
+        registrations
+    })
+} catch (error) {
+    // Handle errors
+    console.error('Error fetching registrations', error);
+    res.status(500).send('Error fetching registrations');
+}
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

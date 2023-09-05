@@ -18,23 +18,7 @@
             <form action="/reg_number" method="POST">
                 <label for="registration" class="reg_label">Enter Registration Number:</label>
                 <input type="text" id="registration" name="regNumber" value="{{regNumber}}">
-
-               <!--  <div class="towns">
-        <label class="Johannesburg">
-          <input type="radio" name="chooseTown" class="chooseTownRadio" value="Johannesburg">
-          <span class="label-body">Johannesburg</span>
-        </label>
-        <label class="English">
-          <input type="radio" name="chooseTown" class="chooseTownRadio" value="Mbombela">
-          <span class="label-body">Mbombela</span>
-        </label>
-        <label class="CapeTown">
-          <input type="radio" name="chooseTown" class="chooseTownRadio" value="CapeTown">
-          <span class="label-body">CapeTown</span>
-        </label>
-      </div> !--> 
-
-        <div>
+                 <div class="add">
             <form action="/reg_number" method="GET">
                 <button class="addButton" type="submit">Add</button>
 
@@ -49,6 +33,31 @@
 
         </div>
 
+               </form> 
+
+        <div class="pickTown" >
+<form action="/reg_by_town" method="GET">
+         <div class="towns">
+        <label class="Johannesburg">
+          <input type="radio" name="chooseTown" class="chooseTownRadio" value="Johannesburg">
+          <span class="label-body">Paarl</span>
+        </label>
+        <label class="English">
+          <input type="radio" name="chooseTown" class="chooseTownRadio" value="Mbombela">
+          <span class="label-body">Bellville</span>
+        </label>
+        <label class="CapeTown">
+          <input type="radio" name="chooseTown" class="chooseTownRadio" value="CapeTown">
+          <span class="label-body">CapeTown</span>
+        </label>
+        
+        <div class="showButton">
+          <button class="showButton" type="submit">Show</button>
+        </div>
+        </div>
+        </form>
+ </div>
+       
     </div>
 </body>
 
