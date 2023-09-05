@@ -55,7 +55,7 @@ app.post('/reg_number', async (req, res) => {
 
 app.get('/reg_number', async (req, res) => {
     try {
-        const getRegistrations = await regRoute.getReg();
+        let getRegistrations = await regRoute.getReg();
         res.render('index', {
             getRegistrations
         });
@@ -70,13 +70,14 @@ app.get('/reg_number', async (req, res) => {
 
 app.get('/reg_by_town', async (req,res)=>{
 try{
-    const townName = req.body.chooseTown;
+    const townName = req.query.chooseTown;
    
     const registrations = await regRoute.getRegByTown(townName)
     console.log(townName)
     res.render('index',{
         registrations
     })
+    console.log(registrations)
 } catch (error) {
     // Handle errors
     console.error('Error fetching registrations', error);
