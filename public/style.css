@@ -90,20 +90,44 @@ li {
   padding: 2%;
   margin-inline: 20%;
 }
+  
 
+
+/********** SMALL SCREENS *********/
 @media only screen and (max-width: 34em) {
-  .container {
-      width: 95%;
-      padding: 5%;
-  }
+  container {
+    max-width: 90%; 
+   margin: 5% auto;
+   padding: 2%;
+ }
 
-  .reg_label {
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
-      max-width: max-content;
-      margin: 5px 0;
-  }
+ h1 {
+   padding: 20px;
+ }
+
+ input[type="text"] {
+   width: 60%;
+ }
+
+ .reg_label {
+   margin: 10px 0;
+ }
+
+ button {
+   width: 20%;
+   margin: 10px 0;
+ }
+
+ ul {
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ li {
+   width: calc(33.33% - 10px);
+   box-sizing: border-box;
+ }
+
 
   input[type="text"] {
       margin: 5px 0;
@@ -111,15 +135,25 @@ li {
 
   button {
       margin: 10px 0;
+      padding: 10px;
+      width: 40%;
   }
 }
+/****MEDIUM SCREENS***/
 
 @media only screen and (min-width: 35em) {
   .container {
       width: 80%;
   }
+
+  button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 40%;
+}
 }
 
+/*** LARGE SCREENS***/
 @media only screen and (min-width: 55em) {
   .container {
       width: 85%;
