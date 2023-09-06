@@ -81,7 +81,16 @@ li {
   text-align: center;
   margin: 20px 0;
 }
-
+.key{
+  position: absolute;
+  top: 75%; 
+  right: 10%; 
+  background-color: rgb(151, 151, 151); 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 10%;
+  font-size: xx-small;
+}
 .registrations {
   border: 2px solid #AEC3AE;
   width: 60%;
