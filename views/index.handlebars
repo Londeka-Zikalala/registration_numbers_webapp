@@ -14,7 +14,13 @@
         <div class="header">
             <h1>Registration Numbers</h1>
         </div>
+         {{#if messages.error}}
+        <div class="flash-error">
+            {{messages.error}}
+        </div>
+    {{/if}}
         <div class="registrations">
+
             <form action="/reg_number" method="POST">
                 <label for="registration" class="reg_label">Enter Registration Number:</label>
                 <input type="text" id="registration" name="regNumber" value="{{regNumber}}">
@@ -40,16 +46,19 @@
          <div class="towns">
         <label class="Johannesburg">
           <input type="radio" name="chooseTown" class="chooseTownRadio" value="Paarl">
-          <span class="label-body">Paarl</span>
+          <span class="">Paarl</span>
         </label>
         <label class="English">
           <input type="radio" name="chooseTown" class="chooseTownRadio" value="Bellville">
-          <span class="label-body">Bellville</span>
+          <span class="">Bellville</span>
         </label>
         <label class="CapeTown">
           <input type="radio" name="chooseTown" class="chooseTownRadio" value="Cape Town">
-          <span class="label-body">Cape Town</span>
+          <span class="">Cape Town</span>
         </label>
+               <label class="All">
+                <input type="radio" name="chooseTown" class="chooseTownRadio" value="">
+                <span class="">View All</span>
         </div>
         
         <div class="show">
@@ -64,7 +73,13 @@
         </div>
         </form>
  </div>
-       
+       <div class="key">
+        <h3>reg Code key:</h3>
+          <p>CT - CA</p>
+          <p> Paarl - CB</p>
+          <p>Bellville - CY</p>
+          
+       </div>
     </div>
 </body>
 

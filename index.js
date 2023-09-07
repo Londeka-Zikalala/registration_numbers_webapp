@@ -28,14 +28,15 @@ const PORT = process.env.PORT || 3000;
 
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', { messages: req.flash() });
 });
 
 app.post('/reg_number', async (req, res) => {
     const regNumber = req.body.regNumber;
-        
+    const RegExp = /^([A-Z]{2}\s?\d{3}-\d{3})$|^([A-Z]{2}\s?\d{4})$|^([A-Z]{2}\s?\d{7})$|^([A-Z]{2}\s?\d{3}\s\d{3})$|^([A-Z]{2}\s?\d{3})$/;
 
-    if (!regNumber) {
+
+    if (regNumber === "" || !RegExp.test(registration)) {
         res.status(400).send('Invalid input');
         return;
     }
@@ -45,7 +46,7 @@ app.post('/reg_number', async (req, res) => {
         await regRoute.addReg(regNumber);
         
         // Redirect to the registration list after adding
-        res.redirect('/reg_number');
+        res.redirect('/');
     } catch (error) {
         // Handle errors
         console.error('Error adding registration', error);
