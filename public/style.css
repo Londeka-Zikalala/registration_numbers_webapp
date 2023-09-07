@@ -101,7 +101,10 @@ li {
   padding: 2%;
   margin-inline: 20%;
 }
-  
+.flash-error{
+  color:red;
+  font-weight: 900;
+}
 
 
 /********** SMALL SCREENS *********/
@@ -125,8 +128,10 @@ li {
  }
 
  button {
-   width: 20%;
-   margin: 10px 0;
+   width: 15%;
+   padding:2px;
+   font-size: x-small;
+
  }
 
  ul {
@@ -147,7 +152,7 @@ li {
   button {
       margin: 10px 0;
       padding: 10px;
-      width: 40%;
+      width: 25%;
   }
   .key{
     position: absolute;
@@ -159,6 +164,7 @@ li {
     width: 10%;
     font-size: xx-small;
   }
+
 }
 /****MEDIUM SCREENS***/
 

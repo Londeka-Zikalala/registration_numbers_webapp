@@ -2,16 +2,16 @@ function regService(db){
 
     //Add a registration number
  async function addReg(registration){
-
     if(registration.length > 4 || registration.length <= 10){
-        let regNumber = registration;
+        let regNumber = registration
+
         let townName;
         
-        if(regNumber.startsWith('CA')){
+        if(regNumber.toUpperCase().startsWith('CA')){
             townName = 'Cape Town';
-        } else if(regNumber.startsWith('CY')){
+        } else if(regNumber.toUpperCase().startsWith('CY')){
             townName = 'Bellville';
-        } else if(regNumber.startsWith('CB')){
+        } else if(regNumber.toUpperCase().startsWith('CB')){
             townName = 'Paarl';
         }
 
@@ -35,14 +35,19 @@ function regService(db){
     if(townName === "Paarl"|| townName === "Bellville" || townName === "Cape Town"){
         return regByTown
     } else {
-        let allReg = await db.any('SELECT * FROM registrations.reg_numbers;');
-        return allReg
+        
+        return getReg()
     }
+}
+
+async function reset(){
+    await db.none("TRUNCATE TABLE registrations.reg_numbers RESTART IDENTITY CASCADE;");
 }
    return{
     addReg,
     getReg,
-    getRegByTown
+    getRegByTown,
+    reset
    }
 
 }

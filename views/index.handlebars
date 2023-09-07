@@ -57,12 +57,14 @@
           <span class="">Cape Town</span>
         </label>
                <label class="All">
-                <input type="radio" name="chooseTown" class="chooseTownRadio" value="">
+                <input type="radio" name="chooseTown" class="chooseTownRadio" value="View All">
                 <span class="">View All</span>
         </div>
         
         <div class="show">
-          <button class="showButton" type="submit">Show</button>
+         
+            <button class="showButton" type="submit">Show</button>
+          
           <div class="reg_list">
                   <ul class="registrationList">
         {{#each registrations}}
@@ -72,9 +74,33 @@
         </div>
         </div>
         </form>
+         <div class="resetB">
+          <form action="/reset">
+           <button class="resetB" type="submit">Reset</button>
+          </form>
+        </div>
  </div>
-       
+   
     </div>
+
+      <script>
+      document.querySelector('.resetB').addEventListener('submit', async (event) => {
+      event.preventDefault();
+     
+      const confirmReset = confirm('Are you sure you want to reset?');
+      
+      if (confirmReset) {
+        try {
+          const response = await fetch('/reset', { method: 'GET' });
+          if (response.ok) {
+            location.reload()
+          } 
+        } catch (error) {
+          console.error('An error occurred', error);
+        }
+      }
+    });
+  </script>
 </body>
 
 </html>
