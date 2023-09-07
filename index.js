@@ -36,7 +36,7 @@ app.post('/reg_number', async (req, res) => {
     const RegExp = /^([A-Z]{2}\s?\d{3}-\d{3})$|^([A-Z]{2}\s?\d{4})$|^([A-Z]{2}\s?\d{7})$|^([A-Z]{2}\s?\d{3}\s\d{3})$|^([A-Z]{2}\s?\d{3})$/;
 
 
-    if (regNumber === "" || !RegExp.test(registration)) {
+    if (regNumber === "" || !RegExp.test(regNumber)) {
         res.status(400).send('Invalid input');
         return;
     }
@@ -55,6 +55,8 @@ app.post('/reg_number', async (req, res) => {
 });
 
 app.get('/reg_number', async (req, res) => {
+    
+
     try {
         let getRegistrations = await regRoute.getReg();
         res.render('index', {
@@ -72,7 +74,10 @@ app.get('/reg_number', async (req, res) => {
 app.get('/reg_by_town', async (req,res)=>{
 try{
     const townName = req.query.chooseTown;
-   
+    if (!townName) {
+        res.status(400).send('Select a town');
+        return;
+    }
     const registrations = await regRoute.getRegByTown(townName)
     console.log(townName)
     res.render('index',{
