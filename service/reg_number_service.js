@@ -1,25 +1,30 @@
 function regService(db){
 
     //Add a registration number
- async function addReg(registration){
-    if(registration.length > 4 || registration.length <= 10){
-        let regNumber = registration
+    async function addReg(registration) {
+        if (registration.length > 4 || registration.length <= 10) {
+            let regNumber = registration.toUpperCase();
 
-        let townName;
-        
-        if(regNumber.toUpperCase().startsWith('CA')){
-            townName = 'Cape Town';
-        } else if(regNumber.toUpperCase().startsWith('CY')){
-            townName = 'Bellville';
-        } else if(regNumber.toUpperCase().startsWith('CB')){
-            townName = 'Paarl';
+            // Check if the registration number already exists in the database
+            const regExists = await db.oneOrNone('SELECT * FROM registrations.reg_numbers WHERE reg_number = $1', [regNumber]);
+            if (!regExists) {
+            let townName;
+    
+            if (regNumber.replace(/[^A-Z0-9]/gi, '').startsWith('CA')) {
+                townName = 'Cape Town';
+            } else if (regNumber.replace(/[^A-Z0-9]/gi, '').startsWith('CY')){
+                townName = 'Bellville';
+            } else if (regNumber.replace(/[^A-Z0-9]/gi, '').startsWith('CB')) {
+                townName = 'Paarl';
+            }
+    
+            let town = await db.oneOrNone('SELECT id FROM registrations.towns WHERE town_name = $1', [townName]);
+    
+            await db.none('INSERT INTO registrations.reg_numbers (reg_number, town_id) VALUES ($1, $2)', [regNumber, town.id]);
         }
-
-        let town = await db.oneOrNone('SELECT id FROM registrations.towns WHERE town_name = $1', [townName]);
-        
-        await db.none('INSERT INTO registrations.reg_numbers (reg_number, town_id) VALUES ($1, $2)', [regNumber, town.id]);
     }
-}
+    }
+    
 
    // get all the registrations
   

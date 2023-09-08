@@ -42,7 +42,8 @@ router.post('/reg_number', async (req, res) => {
     } catch (error) {
         // Handle errors
         console.error('Error adding registration', error);
-        res.status(500).send('Please enter valid registration');
+        req.flash('error','Please enter valid registration');
+        res.redirect('/');
     }
 });
 
@@ -85,10 +86,16 @@ try{
 }
 });
 
-router.get('/reset', async (req, res) =>{
-
-        await regRoute.reset();
-
-})
+router.get('/reset', async (req, res) => {
+    try {
+      await regRoute.reset();
+      req.flash('success', 'Reset successful');
+      res.redirect('/');
+    } catch (error) {
+      console.error('Error resetting data', error);
+      req.flash('error', 'Error resetting data');
+      res.redirect('/');
+    }
+  });
 
 export default router;

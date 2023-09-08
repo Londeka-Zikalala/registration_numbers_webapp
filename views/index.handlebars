@@ -11,6 +11,13 @@
 
 <body>
     <div class="container">
+     <div class="key">
+        <h3>Registration Code Key:</h3>
+          <p>CT - CA</p>
+          <p> Paarl - CB</p>
+          <p>Bellville - CY</p>
+
+       </div>
         <div class="header">
             <h1>Registration Numbers</h1>
         </div>
@@ -80,26 +87,37 @@
           </form>
         </div>
  </div>
-   
+     
     </div>
 
       <script>
-      document.querySelector('.resetB').addEventListener('submit', async (event) => {
-      event.preventDefault();
-     
-      const confirmReset = confirm('Are you sure you want to reset?');
-      
-      if (confirmReset) {
-        try {
-          const response = await fetch('/reset', { method: 'GET' });
-          if (response.ok) {
-            location.reload()
-          } 
-        } catch (error) {
-          console.error('An error occurred', error);
-        }
+// error messages display for 3.5seconds
+    let errorMessageElem = document.querySelector('.flash-error');
+    errorMessageElem.textContent = '{{messages.error}}'
+    
+    setTimeout(()=>{
+      errorMessageElem.style.display = 'none'
+
+    },3500)
+
+// Reset button confirmation
+
+     document.querySelector('.resetB').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const confirmReset = confirm('Are you sure you want to reset?');
+
+  if (confirmReset) {
+    try {
+      const response = await fetch('/reset', { method: 'GET' });
+      if (response.ok) {
+        location.reload();
       }
-    });
+    } catch (error) {
+      console.error('An error occurred', error);
+    }
+  }
+});
   </script>
 </body>
 

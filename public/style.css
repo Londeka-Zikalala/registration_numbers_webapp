@@ -83,9 +83,7 @@ li {
   margin: 20px 0;
 }
 .key{
-  position: absolute;
-  top: 65%; 
-  right: 10%; 
+  float: right;
   background-color: rgb(151, 151, 151); 
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -109,7 +107,7 @@ li {
 
 /********** SMALL SCREENS *********/
 @media only screen and (max-width: 34em) {
-  container {
+  .container {
     max-width: 90%; 
    margin: 5% auto;
    padding: 2%;
@@ -155,13 +153,12 @@ li {
       width: 25%;
   }
   .key{
-    position: absolute;
-    top: 65%; 
-    right: 10%; 
+    float:right;
     background-color: rgb(151, 151, 151); 
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 10%;
+    width: max-content;
+    margin: 2%;
     font-size: xx-small;
   }
 
@@ -178,14 +175,13 @@ li {
     padding: 10px;
     width: 40%;
 }
+
 .key{
-  position: absolute;
-  top: 37%; 
-  right: 10%; 
+  float:right;
   background-color: rgb(151, 151, 151); 
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 10%;
+  width: max-content;
   font-size: xx-small;
 }
 }
