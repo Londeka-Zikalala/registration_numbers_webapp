@@ -1,20 +1,36 @@
 function regService(db){
+    //transform input registration 
+    async function transformReg(registration){
+        var RegExp = /^([A-Z]{2}\s?\d{3}-\d{3})$|^([A-Z]{2}\s?\d{4})$|^([A-Z]{2}\s?\d{7})$|^([A-Z]{2}\s?\d{3}\s\d{3})$|^([A-Z]{2}\s?\d{3})$|^([A-Z]{2}\s?\d{6})$|^([A-Z]{2}\s?\d{8})$|^([A-Z]{2}\s\d{8})$/i;
+        //remove spaces
+        RegExp.test(registration);
+        let transformed =  registration.replace(/-/g, '');
+        //remove the hyphens
+        transformed = transformed.replace(/\s/g, '');
+
+        return transformed
+    }
 
     //Add a registration number
     async function addReg(registration) {
-        if (registration.length > 4 || registration.length <= 10) {
-            let regNumber = registration.toUpperCase();
+        let transformed = await transformReg(registration);
+        if (transformed.length > 4 || transformed.length <= 10) {
+            let regNumber = transformed.toUpperCase()
 
             // Check if the registration number already exists in the database
             const regExists = await db.oneOrNone('SELECT * FROM registrations.reg_numbers WHERE reg_number = $1', [regNumber]);
-            if (!regExists) {
+            if (regExists) {
+               
+                throw new Error('Registration already exists')
+            } else{
+        
             let townName;
     
-            if (regNumber.replace(/[^A-Z0-9]/gi, '').startsWith('CA')) {
+            if (regNumber.startsWith('CA')) {
                 townName = 'Cape Town';
-            } else if (regNumber.replace(/[^A-Z0-9]/gi, '').startsWith('CY')){
+            } else if (regNumber.startsWith('CY')){
                 townName = 'Bellville';
-            } else if (regNumber.replace(/[^A-Z0-9]/gi, '').startsWith('CB')) {
+            } else if (regNumber.startsWith('CB')) {
                 townName = 'Paarl';
             }
     
@@ -27,7 +43,7 @@ function regService(db){
     
 
    // get all the registrations
-  
+
 
    async function getReg(){
     let allReg = await db.any('SELECT * FROM registrations.reg_numbers;');
@@ -49,6 +65,7 @@ async function reset(){
     await db.none("TRUNCATE TABLE registrations.reg_numbers RESTART IDENTITY CASCADE;");
 }
    return{
+    transformReg,
     addReg,
     getReg,
     getRegByTown,

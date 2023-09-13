@@ -23,11 +23,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/reg_number', async (req, res) => {
-    const regNumber = req.body.regNumber;
-    const RegExp = /^([A-Z]{2}\s?\d{3}-\d{3})$|^([A-Z]{2}\s?\d{4})$|^([A-Z]{2}\s?\d{7})$|^([A-Z]{2}\s?\d{3}\s\d{3})$|^([A-Z]{2}\s?\d{3})$|^([A-Z]{2}\s?\d{6})$|^([A-Z]{2}\s?\d{8})$|^([A-Z]{2}\s\d{8})$/i;
-    const testedReg = RegExp.test(regNumber)
-
-    if (!testedReg) {
+    let regNumber = req.body.regNumber;
+     regNumber = await regRoute.transformReg(regNumber)
+    if (!regNumber) {
         req.flash('error', 'Please enter a valid registration number');
         res.redirect('/');
         return;
@@ -42,7 +40,11 @@ router.post('/reg_number', async (req, res) => {
     } catch (error) {
         // Handle errors
         console.error('Error adding registration', error);
-        req.flash('error','Please enter valid registration');
+        if (error.message === 'Registration already exists') {
+            req.flash('error', 'Registration already exists');
+        } else {
+            req.flash('error','Please enter valid registration');
+        }
         res.redirect('/');
     }
 });
