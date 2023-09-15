@@ -34,7 +34,7 @@ router.post('/reg_number', async (req, res) => {
     try {
         // Call the registration service to add the registration
         await regRoute.addReg(regNumber);
-        req.flash('success', `Registration number ${regNumber} added successfully.`);
+        req.flash('success', `Registration number ${regNumber} added successfully!`);
 
         // Redirect to the registration list after adding
         res.redirect('/');
@@ -76,7 +76,7 @@ try{
    }
     const registrations = await regRoute.getRegByTown(townName)
     if (registrations.length === 0) {
-        req.flash('error', 'No registration numbers found for this town');
+        req.flash('error', `No registration numbers from ${townName}`);
         res.redirect('/');
         return;
 
@@ -94,19 +94,15 @@ try{
 }
 });
 
+
 router.get('/reset', async (req, res) => {
     try {
       await regRoute.reset()
-        req.flash('success', 'Reset successful');
-        res.redirect('/');
-      
-   
-
+      res.status(200).json({ message: 'Reset successful!' });
     } catch (error) {
       console.error('Error resetting data', error);
-      req.flash('error', 'Error resetting data');
-      res.redirect('/');
+      res.status(500).json({ message: 'Error resetting data' });
     }
-  });
+});
 
 export default router;
