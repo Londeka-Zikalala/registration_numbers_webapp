@@ -13,7 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      DATABASE_URL: postgres://cabckogl:L5H7efCRLQcjvnyv7zJIrw-HD41hW11S@snuffleupagus.db.elephantsql.com/cabckogl
     strategy:
       matrix:
         node-version: [16.x, 18.x]
