@@ -34,7 +34,8 @@ router.post('/reg_number', async (req, res) => {
     try {
         // Call the registration service to add the registration
         await regRoute.addReg(regNumber);
-        
+        req.flash('success', `Registration number ${regNumber} added successfully.`);
+
         // Redirect to the registration list after adding
         res.redirect('/');
     } catch (error) {
@@ -51,11 +52,10 @@ router.post('/reg_number', async (req, res) => {
 
 router.get('/reg_number', async (req, res) => {
     try {
+
         let getRegistrations = await regRoute.getReg();
-        res.render('index', {
-            getRegistrations,
-        });
-        
+
+            res.redirect('/')
         console.log(getRegistrations);
     } catch (error) {
         // Handle errors
@@ -75,6 +75,12 @@ try{
 
    }
     const registrations = await regRoute.getRegByTown(townName)
+    if (registrations.length === 0) {
+        req.flash('error', 'No registration numbers found for this town');
+        res.redirect('/');
+        return;
+
+    }
     console.log(townName)
     res.render('index',{
         registrations
@@ -90,9 +96,12 @@ try{
 
 router.get('/reset', async (req, res) => {
     try {
-      await regRoute.reset();
-      req.flash('success', 'Reset successful');
-      res.redirect('/');
+      await regRoute.reset()
+        req.flash('success', 'Reset successful');
+        res.redirect('/');
+      
+   
+
     } catch (error) {
       console.error('Error resetting data', error);
       req.flash('error', 'Error resetting data');
