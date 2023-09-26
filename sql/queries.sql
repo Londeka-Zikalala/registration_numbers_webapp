@@ -1,0 +1,1 @@
+INSERT INTO towns (town_name) VALUES ('Paarl'), ('Bellville'), ('Cape Town');
